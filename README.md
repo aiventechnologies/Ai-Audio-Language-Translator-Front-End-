@@ -1,14 +1,79 @@
-# Ai-Audio-Language-Translator-Front-End:
-A sleek, responsive frontend for an AI-powered audio translation app. Record or upload speech, get instant translations across multiple languages with text and audio output. Built with modern UI components, real-time processing states, and clean API integration hooks for seamless backend connectivity.
+# Voxbridge — AI Audio Language Translator (Frontend)
 
-This repository contains the frontend codebase for an AI powered audio translation application. It allows users to record or upload speech and receive real time translated output in text and audio form across multiple languages.
+A React + Vite frontend for an AI-powered audio language translator. Record or upload
+speech, pick a source and target language, and get a live transcript + translation with
+an animated waveform display. This repo is **frontend only** — wire up your own backend
+or AI API (e.g. Whisper for transcription + an LLM/translation API) in `src/lib/api.js`.
 
-The interface was built with a focus on responsiveness, clean state management, and easy integration with backend translation APIs. Development practices for this project were shaped with guidance from an [Australian based AI development](https://www.aiventechnologies.com) team that specializes in building intelligent, production ready applications.
+## Features
 
-For handling Urdu text formatting and legacy font conversion needs within the broader project ecosystem, this app also draws on tooling inspired by a dedicated [Urdu font conversion utility](https://www.unicodeinpage.com), which converts between Unicode and InPage formats seamlessly.
+- 🎙️ In-browser audio recording (MediaRecorder API) with a live animated waveform
+- 📁 Drag-and-drop audio file upload as an alternative to recording
+- 🌐 Source/target language selection with quick-swap
+- 📝 Transcript + translation panel with copy-to-clipboard
+- 🕘 Local session history of past translations
+- 🎨 Distinctive, fully responsive UI (see Design section)
 
-# Features:
-Real time speech to text and translation
-Multi language support
-Clean, modular frontend architecture
-API ready integration hooks
+## Tech stack
+
+- React 18 + Vite
+- Plain CSS (no framework) using CSS custom properties for theming
+- Web Audio API for the waveform visualizer
+
+## Getting started
+
+```bash
+npm install
+npm run dev
+```
+
+Open the printed local URL in your browser. Grant microphone permission to record.
+
+To build for production:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Connecting a real backend
+
+All network calls are isolated in `src/lib/api.js`. Two functions are stubbed and ready
+to be pointed at a real service:
+
+- `transcribeAudio(blob, sourceLang)` — send the recorded/uploaded audio to your speech-to-text
+  endpoint (e.g. Whisper API) and return `{ text }`.
+- `translateText(text, sourceLang, targetLang)` — send transcribed text to your
+  translation/LLM endpoint and return `{ translatedText }`.
+
+Both currently return mocked data after a short delay so the UI is fully demoable without
+a backend.
+
+## Project structure
+
+```
+src/
+  components/
+    Header.jsx
+    Recorder.jsx
+    WaveformVisualizer.jsx
+    LanguageSelector.jsx
+    TranscriptPanel.jsx
+    HistoryList.jsx
+    Footer.jsx
+  lib/
+    api.js
+    languages.js
+  App.jsx
+  main.jsx
+  index.css
+```
+
+## Deploying
+
+This is a static Vite app — deploy the `dist/` output to Vercel, Netlify, GitHub Pages,
+or Cloudflare Pages.
+
+## License
+
+MIT — do whatever you like with this.
