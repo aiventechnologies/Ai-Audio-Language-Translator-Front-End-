@@ -14,7 +14,7 @@ or AI API (e.g. Whisper for transcription + an LLM/translation API) in `src/lib/
 - 🕘 Local session history of past translations
 - 🎨 Distinctive, fully responsive UI (see Design section)
 
-## Tech stack
+## Technology stack
 
 - React 18 + Vite
 - Plain CSS (no framework) using CSS custom properties for theming
@@ -44,7 +44,7 @@ to be pointed at a real service:
 - `transcribeAudio(blob, sourceLang)` — send the recorded/uploaded audio to your speech-to-text
   endpoint (e.g. Whisper API) and return `{ text }`.
 - `translateText(text, sourceLang, targetLang)` — send transcribed text to your
-  translation/LLM endpoint and return `{ translatedText }`.
+  [translation](https://unicodeinpage.com/roman-urdu-to-english-and-english-to-roman-urdu-converter/) /LLM endpoint and return `{ translatedText }`.
 
 Both currently return mocked data after a short delay so the UI is fully demoable without
 a backend.
